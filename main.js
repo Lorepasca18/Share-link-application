@@ -22,6 +22,7 @@ function showPage(page) {
   document.getElementById("add-link").onclick = function() { showPage("container-platform");
   };
   document.getElementById("link-buton-page").onclick = function () {
+   removePage ("container-profile");
     showPage("container-link-page");
    }
     
