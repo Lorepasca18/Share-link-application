@@ -1,0 +1,17 @@
+.bg-primary {
+  width: 100%;
+  height: 300px;
+  padding-top: 20px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.custom-container {
+  width: 100%;
+  height: 400px;
+  margin-top: 21%;
+}
+
+.white-text {
+  color: white;
+}
