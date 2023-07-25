@@ -33,7 +33,7 @@ export const navbar = () => {
             </div>
         </div>
     </nav>`;
-  document.body.insertAdjacentHTML("beforebegin", htmlNavbar);
+  document.body.insertAdjacentHTML("afterBegin", htmlNavbar);
 };
 
 const clearPages = () => {

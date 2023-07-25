@@ -1,11 +1,5 @@
 import { getItem } from "../localStorage.js";
 
-export const redirectToEditor = () => {
-  document.getElementById("backToEditor-button").onclick = () => {
-    window.location.href = "index.html";
-  };
-};
-
 const renderGitHub = (link) => {
   const htmlPage = `<div class="col-lg-12 bg-light p-3 d-flex justify-content-center align-items-center">
         <a href="${link}" target="_blank" class="col-6 col-sm-4 bg-dark d-flex justify-content-center align-items-center white-text">GitHub</a>
@@ -30,8 +24,18 @@ const renderLinkedIn = (link) => {
   containerParrent.insertAdjacentHTML("beforeEnd", htmlPage);
 };
 
-const renderLinks = () => {
+const renderPageInfo = () => {
+  const userDetails = localStorage.getItem("profile-details");
+  if (userDetails !== null) {
+    const profileDetails = JSON.parse(userDetails);
+    document.getElementById("preview-name").textContent =
+      (profileDetails.firstName || "") + " " + (profileDetails.lastName || "");
+    document.getElementById("preview-email").textContent =
+      profileDetails.email || "";
+  }
+
   const items = JSON.parse(getItem("links"));
+
   if (!items || items.length === 0) return;
   for (let i = 0; i < items.length; i++) {
     const currentItem = items[i];
@@ -47,28 +51,4 @@ const renderLinks = () => {
   }
 };
 
-renderLinks();
-
-const renderUserDetails = () => {
-  const userDetails = localStorage.getItem("profile-details");
-  if (userDetails !== null) {
-    const profileDetails = JSON.parse(userDetails);
-    document.getElementById("preview-name").textContent =
-      (profileDetails.firstName || "") + " " + (profileDetails.lastName || "");
-    document.getElementById("preview-email").textContent =
-      profileDetails.email || "";
-  }
-};
-
-renderUserDetails();
-
-// share link button
-const shareLink = () => {
-  const button = document.getElementById("shareLink-button");
-
-  button.addEventListener("click", () => {
-    window.open("https://www.google.com", "_blank");
-  });
-};
-
-shareLink();
+renderPageInfo();

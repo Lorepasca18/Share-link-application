@@ -1,11 +1,11 @@
+import { getItem, setItem } from "../localStorage.js";
+
 const ID_PAGE = "page-profile";
 
 export const renderPage = () => {
   const htmlPage = `
   <div class="container" id="page-profile">
-  <div class="row align-items-start">
-      <div class="col">
-      </div>
+  <div class="row">
       <div class="col -light bg-light" id="container-profile">
           <p class="h2">Profile Details</p>
           <p>Add your details to create a personal touch to your profile.</p>
@@ -17,40 +17,80 @@ export const renderPage = () => {
           </div>
           <br>
           <div class="row">
-              <div class="col-4">
-                  <p>First name*</p>
-              </div>
-              <div class="col-8">
-                  <input type="text" class="form-control" id="formGroupExampleInput"
-                      placeholder="Enter your first name">
-              </div>
-              <div class="col-4">
-                  <p>Last name*</p>
-              </div>
-              <div class="col-8">
-                  <input type="text" class="form-control" id="formGroupExampleInput"
-                      placeholder="Enter your last name">
-              </div>
-              <div class="col-4">
-                  <p>Email</p>
-              </div>
-              <div class="col-8">
-                  <input type="text" class="form-control" id="formGroupExampleInput"
-                      placeholder="Enter your email adress">
-              </div>
-          </div>
+  <div class="col-4">
+      <p>First name*</p>
+  </div>
+  <div class="col-8">
+      <input type="text" class="form-control" id="firstName"
+          placeholder="Enter your first name">
+  </div>
+  <div class="col-4">
+      <p>Last name*</p>
+  </div>
+  <div class="col-8">
+      <input type="text" class="form-control" id="lastName"
+          placeholder="Enter your last name">
+  </div>
+  <div class="col-4">
+      <p>Email</p>
+  </div>
+  <div class="col-8">
+      <input type="email" class="form-control" id="emailAdress"
+          placeholder="Enter your email adress">
+  </div>
+</div>
       </div>
   </div>
-  <button type="button" class="btn btn-transparent" id="save-button">SAVE</button>
-
+  <div class="d-grid gap-1 col-1 mx-auto">
+  <button type="button" class="btn btn-primary" id="save-button" style="text-align: center; margin: 0 auto">SAVE</button>
+  </div>
 </div>
 `;
-  document.body.insertAdjacentHTML("beforebegin", htmlPage);
+  const containerParrent = document.getElementById("body");
+  containerParrent.insertAdjacentHTML("beforeEnd", htmlPage);
+  handleSave();
+  populateCredential();
 };
 
 export const clearPage = () => {
   const element = document.getElementById(ID_PAGE);
   if (element !== null) {
     element.remove();
+  }
+};
+
+const saveCredential = () => {
+  const profileDetails = {}; // Change to an object
+  const inputFirstName = document.getElementById("firstName").value;
+  const inputLastName = document.getElementById("lastName").value;
+  const inputEmailAdress = document.getElementById("emailAdress").value;
+
+  // Check if any of the required fields are empty
+  if (!inputFirstName || !inputLastName || !inputEmailAdress) {
+    return;
+  }
+
+  // Assign values to the profileDetails object
+  profileDetails.firstName = inputFirstName;
+  profileDetails.lastName = inputLastName;
+  profileDetails.email = inputEmailAdress;
+
+  // Convert profileDetails to JSON and store in local storage
+  localStorage.setItem("profile-details", JSON.stringify(profileDetails));
+};
+
+const handleSave = () => {
+  document.getElementById("save-button").onclick = () => {
+    saveCredential();
+  };
+};
+
+const populateCredential = () => {
+  const value = localStorage.getItem("profile-details");
+  if (value !== null) {
+    const profileDetails = JSON.parse(value);
+    document.getElementById("firstName").value = profileDetails.firstName || "";
+    document.getElementById("lastName").value = profileDetails.lastName || "";
+    document.getElementById("emailAdress").value = profileDetails.email || "";
   }
 };

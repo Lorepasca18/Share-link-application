@@ -1,0 +1,10 @@
+1. check the inputs if have id's
+        - see implementation of renderNewLink from components/editor/linkPage
+2. based on ids get the values
+3. create new object profileDetails to store this values
+ex: keys for object looks like:
+    firstName,
+    lastName
+    email
+4. after all values are in object you need to store in localStorage
+    - see implementation of saveItems from components/editor/linkPage

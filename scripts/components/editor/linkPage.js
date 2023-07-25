@@ -5,9 +5,7 @@ const ID_PAGE = "page-link";
 export const renderPage = () => {
   const htmlPage = `
     <div class="container" id="page-link">
-    <div class="row align-items-start">
-        <div class="col">
-        </div>
+    <div class="row">
         <div class="col" id="container-link-page">
             <p class="h2">Customize your links</p>
             <p>Add / edit / remove links below and then share all your profiles with the world!</p>
@@ -19,11 +17,14 @@ export const renderPage = () => {
             <div id="container-new-links"></div>
         </div>
     </div>
-    <button type="button" class="btn btn-transparent" id="save-button">SAVE</button>
-</div>
+    <div class="d-grid gap-1 col-1 mx-auto">
+    <button type="button" class="btn btn-primaary" id="save-button">SAVE</button>
+    </div>
+    </div>
 
 `;
-  document.body.insertAdjacentHTML("beforebegin", htmlPage);
+  const containerParrent = document.getElementById("body");
+  containerParrent.insertAdjacentHTML("beforeEnd", htmlPage);
   handleNewLink();
   handleSave();
 };
