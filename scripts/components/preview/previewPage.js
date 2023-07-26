@@ -65,9 +65,22 @@ renderUserDetails();
 // share link button
 const shareLink = () => {
   const button = document.getElementById("shareLink-button");
+  // cream un no obiect in care punem date din local storage
+  const shareLinkObj = {
+    details: getItem("profile-details"),
+    links: getItem("links"),
+  };
+  // we want to delete the password, because we send it via link, and it's not ok
+  delete shareLinkObj.details.password;
+  // cu functia asta window.btoa encodam datele din shareLinkObj, ca se le putem pune in url si sa nu fie o chestie usor de citit
+  const encodedLink = window.btoa(JSON.stringify(shareLinkObj));
+  const pageLink = window.location.href.replace(
+    "preview.html",
+    `share.html?share=${encodedLink}`
+  );
 
   button.addEventListener("click", () => {
-    window.open("https://www.google.com", "_blank");
+    window.open(pageLink, "_blank");
   });
 };
 

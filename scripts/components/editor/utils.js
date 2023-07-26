@@ -1,12 +1,12 @@
 import * as linkPage from "./linkPage.js";
 import * as profilePage from "./profilePage.js";
-
+import { removeItem } from "../localStorage.js";
 export const navbar = () => {
   const htmlNavbar = `
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <!-- add logo -->
-            <div class="card" style="width: 4rem;">
+            <div class="card" style="width: 4rem;" id="image-logo">
             <img src="assets/images/logo.png" class="card-img-top" alt="...">
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -54,5 +54,10 @@ export const navigate = () => {
 
   document.getElementById("preview-button").onclick = () => {
     window.location.href = "preview.html";
+  };
+
+  document.getElementById("image-logo").onclick = () => {
+    removeItem("profile-details");
+    window.location.href = "index.html";
   };
 };

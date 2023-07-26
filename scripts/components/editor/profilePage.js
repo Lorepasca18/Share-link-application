@@ -38,6 +38,13 @@ export const renderPage = () => {
       <input type="email" class="form-control" id="emailAdress"
           placeholder="Enter your email adress">
   </div>
+  <div class="col-4">
+      <p>Password</p>
+  </div>
+  <div class="col-8">
+      <input type="password" class="form-control" id="password"
+          placeholder="Enter your password">
+  </div>
 </div>
       </div>
   </div>
@@ -64,9 +71,15 @@ const saveCredential = () => {
   const inputFirstName = document.getElementById("firstName").value;
   const inputLastName = document.getElementById("lastName").value;
   const inputEmailAdress = document.getElementById("emailAdress").value;
+  const inputPassword = document.getElementById("password").value;
 
   // Check if any of the required fields are empty
-  if (!inputFirstName || !inputLastName || !inputEmailAdress) {
+  if (
+    !inputFirstName ||
+    !inputLastName ||
+    !inputEmailAdress ||
+    !inputPassword
+  ) {
     return;
   }
 
@@ -74,9 +87,10 @@ const saveCredential = () => {
   profileDetails.firstName = inputFirstName;
   profileDetails.lastName = inputLastName;
   profileDetails.email = inputEmailAdress;
+  profileDetails.password = inputPassword;
 
   // Convert profileDetails to JSON and store in local storage
-  localStorage.setItem("profile-details", JSON.stringify(profileDetails));
+  setItem("profile-details", JSON.stringify(profileDetails));
 };
 
 const handleSave = () => {
@@ -85,12 +99,14 @@ const handleSave = () => {
   };
 };
 
+// populate html fields with actual values from local Storage
 const populateCredential = () => {
-  const value = localStorage.getItem("profile-details");
+  const value = getItem("profile-details");
   if (value !== null) {
     const profileDetails = JSON.parse(value);
     document.getElementById("firstName").value = profileDetails.firstName || "";
     document.getElementById("lastName").value = profileDetails.lastName || "";
     document.getElementById("emailAdress").value = profileDetails.email || "";
+    document.getElementById("password").value = profileDetails.password || "";
   }
 };

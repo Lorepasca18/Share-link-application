@@ -25,7 +25,18 @@ const renderLinkedIn = (link) => {
 };
 
 const renderPageInfo = () => {
-  const userDetails = localStorage.getItem("profile-details");
+  // aici luam link creat
+  const shareUrlPage = new URLSearchParams(window.location.search);
+  // aici extragem -share- url params
+  const shareData = shareUrlPage.get("share");
+
+  //aici decodam datale din share
+  const decodedData = JSON.parse(window.atob(shareData));
+  //aici le procesam
+
+  const userDetails = decodedData.details;
+  const links = JSON.parse(decodedData.links);
+
   if (userDetails !== null) {
     const profileDetails = JSON.parse(userDetails);
     document.getElementById("preview-name").textContent =
@@ -34,11 +45,9 @@ const renderPageInfo = () => {
       profileDetails.email || "";
   }
 
-  const items = JSON.parse(getItem("links"));
-
-  if (!items || items.length === 0) return;
-  for (let i = 0; i < items.length; i++) {
-    const currentItem = items[i];
+  if (!links || links.length === 0) return;
+  for (let i = 0; i < links.length; i++) {
+    const currentItem = links[i];
     if (currentItem.platformValue === "0") {
       renderGitHub(currentItem.linkValue);
     }
