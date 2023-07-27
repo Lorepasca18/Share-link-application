@@ -31,3 +31,11 @@ const handeLogin = () => {
 };
 
 handeLogin();
+
+const redirectRegister = () => {
+  document.getElementById("signUp-button").onclick = () => {
+    window.location.href = "register.html";
+  };
+};
+
+redirectRegister();
