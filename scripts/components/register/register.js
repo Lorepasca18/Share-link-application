@@ -30,7 +30,8 @@ const registerUser = () => {
   // check if we already have the email
 
   const users = JSON.parse(getItem("users")) || [];
-
+  console.log(user);
+  console.log(users);
   if (users.find((u) => u.email === user.email)) {
     console.error("User already exist");
     return;
@@ -38,6 +39,8 @@ const registerUser = () => {
   users.push(user);
   // Convert users to JSON and store in local storage
   setItem("users", JSON.stringify(users));
+  // Add an alert message
+  alert("Registration completed successfully!");
 };
 
 const handeRegister = () => {
@@ -47,3 +50,11 @@ const handeRegister = () => {
 };
 
 handeRegister();
+
+const redirectLogin = () => {
+  document.getElementById("logIn-link").onclick = () => {
+    window.location.href = "login.html";
+  };
+};
+
+redirectLogin();
