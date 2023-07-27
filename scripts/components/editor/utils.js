@@ -30,6 +30,10 @@ export const navbar = () => {
                     <button type="button" class="btn btn-outline-primary" id="preview-button">Preview
                     </button>
                 </div>
+                <div class="d-flex p-2 bd-highlight">
+                    <button type="button" class="btn btn-primary" id="logout-button">Logout
+                    </button>
+                </div>
             </div>
         </div>
     </nav>`;
@@ -56,7 +60,7 @@ export const navigate = () => {
     window.location.href = "preview.html";
   };
 
-  document.getElementById("image-logo").onclick = () => {
+  document.getElementById("logout-button").onclick = () => {
     removeItem("profile-details");
     window.location.href = "index.html";
   };
