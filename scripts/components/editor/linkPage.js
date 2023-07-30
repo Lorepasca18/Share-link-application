@@ -11,7 +11,7 @@ export const renderPage = () => {
             <p>Add / edit / remove links below and then share all your profiles with the world!</p>
             <br>
             <div class="d-grid gap-2">
-                <button class="btn btn-outline-primary" type="button" id="add-link" >+Add new link</button>
+                <button class="btn btn-outline-info" type="button" id="add-link" >+Add new link</button>
                 <br>
             </div>
             <div id="container-new-links"></div>
@@ -97,6 +97,7 @@ const saveItems = () => {
 const handleSave = () => {
   document.getElementById("save-button").onclick = () => {
     saveItems();
+    alert("Link successfully registered!");
   };
 };
 

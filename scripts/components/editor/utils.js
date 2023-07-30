@@ -7,7 +7,7 @@ export const navbar = () => {
         <div class="container-fluid">
             <!-- add logo -->
             <div class="card" style="width: 4rem;" id="image-logo">
-            <img src="assets/images/logo.png" class="card-img-top" alt="...">
+            <img src="assets/images/rope.png" class="card-img-top" alt="...">
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,18 +20,18 @@ export const navbar = () => {
                 </ul>
                 <!-- add navbar buttons -->
                 <div class="text-center mx-auto">
-                    <button type="button" class="btn btn-outline-primary" id="link-button">
+                    <button type="button" class="btn btn-outline-info" id="link-button">
                         <span class="btn-label"><i class="fa fa-chain"></i></span> Link</button>
-                    <button type="button" class="btn btn-outline-secondary" id="profile-button">
+                    <button type="button" class="btn btn-outline-dark" id="profile-button">
                         <span class="btn-label"><i class="fa fa-user-circle"></i></span> Profile details</button>
                 </div>
 
                 <div class="d-flex p-2 bd-highlight">
-                    <button type="button" class="btn btn-outline-primary" id="preview-button">Preview
+                    <button type="button" class="btn btn-outline-info" id="preview-button">Preview
                     </button>
                 </div>
                 <div class="d-flex p-2 bd-highlight">
-                    <button type="button" class="btn btn-primary" id="logout-button">Logout
+                    <button type="button" class="btn btn-info" id="logout-button">Logout
                     </button>
                 </div>
             </div>

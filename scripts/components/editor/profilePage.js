@@ -96,6 +96,7 @@ const saveCredential = () => {
 const handleSave = () => {
   document.getElementById("save-button").onclick = () => {
     saveCredential();
+    alert("Profile details successfully saved!");
   };
 };
 

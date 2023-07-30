@@ -14,7 +14,7 @@ const logInUser = () => {
     (u) => u.email === inputEmail && u.password === inputPassword
   );
   if (!checkUser) {
-    console.log("User not found");
+    alert("User not found");
     return;
   }
 

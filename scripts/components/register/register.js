@@ -16,7 +16,7 @@ const registerUser = () => {
     !inputPassword ||
     !inputrepeatPassword
   ) {
-    console.log("Validation failed");
+    alert("Validation failed");
     return;
   }
 
@@ -33,7 +33,7 @@ const registerUser = () => {
   console.log(user);
   console.log(users);
   if (users.find((u) => u.email === user.email)) {
-    console.error("User already exist");
+    alert("User already exist");
     return;
   }
   users.push(user);
