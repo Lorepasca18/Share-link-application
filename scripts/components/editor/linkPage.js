@@ -76,6 +76,7 @@ const saveItems = () => {
   const numberOfItems = getItem("newLink");
   if (numberOfItems === 0) return;
   const links = [];
+  const hasErros = false;
   for (let i = 1; i <= numberOfItems; i++) {
     let platformValue, linkValue;
     if (document.getElementById(`input-platform-${i}`)) {
@@ -84,20 +85,39 @@ const saveItems = () => {
     if (document.getElementById(`input-link-${i}`)) {
       linkValue = document.getElementById(`input-link-${i}`).value;
     }
-
+    // link management and validation
     if (!platformValue || !linkValue) continue;
+    if (platformValue === "0" && linkValue.indexOf("github.com") === -1) {
+      alert("Error");
+      hasErros = true;
+      continue;
+    }
+    if (platformValue === "1" && linkValue.indexOf("linkedin.com") === -1) {
+      alert("Error");
+      hasErros = true;
+      continue;
+    }
+    if (platformValue === "2" && linkValue.indexOf("youtube.com") === -1) {
+      alert("Error");
+      hasErros = true;
+      continue;
+    }
     links.push({
       platformValue,
       linkValue,
     });
   }
+
   setItem("links", JSON.stringify(links));
+  if (!hasErros) {
+    alert("Link successfully registered!");
+  }
 };
 
 const handleSave = () => {
   document.getElementById("save-button").onclick = () => {
     saveItems();
-    alert("Link successfully registered!");
+    //
   };
 };
 
