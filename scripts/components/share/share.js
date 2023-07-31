@@ -33,7 +33,7 @@ const renderPageInfo = () => {
   //aici decodam datale din share
   const decodedData = JSON.parse(window.atob(shareData));
   //aici le procesam
-
+  console.log(decodedData);
   const userDetails = decodedData.details;
   const links = JSON.parse(decodedData.links);
 
