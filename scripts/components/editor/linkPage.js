@@ -33,7 +33,10 @@ export const renderPage = () => {
   renderExistingLinks();
 };
 
-const renderNewLink = (indexRender, platformValue = "", linkValue = "") => {
+const renderNewLink = (indexRender, link) => {
+  const platformValue = link?.platformValue || 0;
+  const linkValue = link?.linkValue || "";
+  const description = link?.description || "";
   const htmlPage = `
     <div id="container-link-item-${indexRender}">
     <form>
@@ -58,11 +61,19 @@ const renderNewLink = (indexRender, platformValue = "", linkValue = "") => {
                         }>YouTube</option>
                     </select>
                 </div>
+               
+            </div>
                 <div class="mb-3 bg-light">
                     <label class="form-label">Link</label>
-                    <input type="text" class="form-control" id="input-link-${indexRender}" aria-describedby="emailHelp" value="${linkValue}">
+                    <input type="text" class="form-control" id="input-link-${indexRender}" aria-describedby="linkHelp" value="${linkValue}">
                     <div id="linkHelp" class="form-text">You need to add the link for the picked platform from the list.</div>
                 </div>
+            </div>
+            <div>
+            <div class="mb-3 bg-light">
+              <label class="form-label">Description</label>
+             <input type="text" class="form-control" id="input-description-${indexRender}" aria-describedby="descriptionHelp" value="${description}">
+            <div id="DescriptionHelp" class="form-text">You need to add the description for the link.</div>
             </div>
         </div>
     </form>
@@ -78,7 +89,7 @@ const renderExistingLinks = () => {
   // Iterăm prin link-urile existente și le afișăm pe pagină
   for (let i = 0; i < existingLinks.length; i++) {
     const link = existingLinks[i];
-    renderNewLink(i + 1, link.platformValue, link.linkValue);
+    renderNewLink(i + 1, link);
   }
 };
 
@@ -104,6 +115,8 @@ const saveItems = () => {
   for (let i = 1; i <= numberOfNewLinks; i++) {
     const platformValue = document.getElementById(`input-platform-${i}`)?.value;
     const linkValue = document.getElementById(`input-link-${i}`)?.value;
+    const description =
+      document.getElementById(`input-description-${i}`)?.value || "";
 
     // link management and validation
     if (!platformValue || !linkValue) continue;
@@ -125,6 +138,7 @@ const saveItems = () => {
     links.push({
       platformValue,
       linkValue,
+      description,
     });
   }
 
